@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Title - SIGGRAPH 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css"> -->
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    .author-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 1px;
+    }
+    .author sup {
+      font-size: 0.7em;
+      margin-left: 2px;
+    }
+    .author a {
+      color:rgb(74, 109, 185);
+      text-decoration: none;
+    }
+    .author a:hover {
+      text-decoration: underline;
+    }
+    .affiliations {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.95em;
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .affiliations a {
+      color:rgb(74, 109, 185);
+      text-decoration: none;
+    }
+    .affiliations a:hover {
+      text-decoration: underline;
+    }
+    .conference a {
+      color:rgb(74, 109, 185);
+      text-decoration: none;
+    }
+    .conference a:hover {
+      text-decoration: underline;
+    }
+    .teaser {
+      margin-top: 20px;
+    }
+    
+    .fa-file-pdf {
+      color: #d22;
+      margin-right: 6px;
+    }
+    .fa-file-video {
+      color: #d22;
+      margin-right: 6px;
+    }
+    .fa-file-code {
+      /* color: #d22; */
+      margin-right: 6px;
+    }
+    .fa-folder-open {
+      /* color: #d22; */
+      margin-right: 6px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .resource-links a {
+      text-decoration: none;
+      color:rgb(74, 109, 185);
+      /* font-weight: bold; */
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .resource-links a i.fa-file-pdf {
+      color: #d22;
+    }
+
+    .resource-links a i.fa-file-video {
+      color: #28a;
+      color:rgb(74, 109, 185);
+      color: #d22;
+    }
+
+    .resource-links a i.fa-file-code {
+      /* color: #28a;
+      color:rgb(74, 109, 185);
+      color: #d22; */
+    }
+
+    .resource-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    i.fas,
+    i.far {
+      font-family: 'Font Awesome 6 Free' !important;
+      font-weight: 900;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Multi-Dimensional Procedural Wave Noise</h1>
+      <p class="conference">
+        <a href="https://dl.acm.org/journal/tog" target="_blank">ACM Transactions on Graphics (TOG)</a>, Vol. 44, No. 4, Article XXX, August 2025<br>
+        <a href="https://s2025.siggraph.org/" target="_blank">SIGGRAPH 2025</a>, August 2025, Vancouver, Canada<br>
+      </p>
+    </header>
+
+    <section class="authors-section">
+      <div class="author-list">
+        <div class="author"><a href="https://pascalguehl.jimdofree.com/" target="_blank">Pascal Guehl</a><sup>1</sup>
+        </div>
+        <div class="author"><a href="https://igg.unistra.fr/People/allegre/" target="_blank">Rémi Allègre</a><sup>2</sup>
+        </div>
+        <div class="author"><a href="https://www.usherbrooke.ca/informatique/nous-joindre/personnel/corps-professoral/professeurs/guillaume-gilet" target="_blank">Guillaume Gilet</a><sup>3</sup>
+        </div>
+        <div class="author"><a href="https://igg.icube.unistra.fr/en/index.php/Basile_Sauvage" target="_blank">Basile Sauvage</a><sup>2</sup>
+        </div>
+        <div class="author"><a href="https://www.lix.polytechnique.fr/vista/vista-member/marie-paule_cani/index.html" target="_blank">Marie-Paule Cani</a><sup>1</sup>
+        </div>
+        <div class="author"><a href="https://dpt-info.u-strasbg.fr/~dischler/" target="_blank">Jean-Michel Dischler</a><sup>2</sup>
+        </div>
+      </div>
+
+      <div class="affiliations">
+        <div><sup>1</sup> <a href="https://www.lix.polytechnique.fr/" target="_blank">LIX</a>, <a href="https://www.polytechnique.edu/en"  target="_blank">Ecole Polytechnique</a>, <a href="https://www.cnrs.fr/en" target="_blank">CNRS</a>, <a href="https://www.ip-paris.fr/en" target="_blank">Institut Polytechnique de Paris</a>, France</div>
+        <div><sup>2</sup> <a href="https://icube.unistra.fr/en/" target="_blank">ICube</a>, <a href="https://en.unistra.fr/" target="_blank">Université de Strasbourg</a>, <a href="https://www.cnrs.fr/en" target="_blank">CNRS</a>, France</div>
+        <div><sup>3</sup> <a href="https://www.usherbrooke.ca/about/" target="_blank">Université de Sherbrooke</a>, Canada</div>
+      </div>
+    </section>
+
+    <!-- <section class="links">
+      <a href="paper.pdf" target="_blank">📄 Read the paper (PDF)</a>
+      <a href="#" target="_blank">🎮 Interactive Demo</a>
+      <a href="GUI/index.html" target="_blank">🎮 Tutorial</a>
+      <a href="#" target="_blank">💾 Code & Data</a>
+    </section> -->
+
+    <section class="teaser">
+      <img src="assets/images/teaser.jpg" style="border: 0px solid;" alt="Project Teaser">
+      <div class="card-content">
+        <p><i><strong>Wave noise</strong></i> is a new procedural noise that encompasses sparse convolution procedural noises like resp. Lewis, Gabor, and Phasor noises providing more efficient computation in higher dimensions (top row, resp. left to center). It also introduces various novel patterns (top row, two rightmost images), including a new cellular noise distinct from Worley’s cellular approach (right most). Retaining essential properties (infinite, resolution independent, compact [1KB per 3D example], fast to compute, and GPU-friendly), it supports diverse applications in Computer Graphics. Two examples are demonstrated: modeling volumetric materials with RGBA transfer functions (middle row), and surface materials mapped on arbitrary geometry with no UV coordinates using style transfer functions (bottom row). Transfer functions are on the left.</p>
+      </div>
+    </section>
+
+    <section class="abstract">
+      <h2>Abstract</h2>
+      <p style="padding-left: 16px; padding-right: 16px; padding-top: 6px;">
+        While precise spectral control can be achieved through sparse convolution, corresponding state of the art noise models are typically too expensive for solid noise. We introduce an alternative, 
+        wave-based procedural noise model, fast enough to be used in any dimension. We express the noise in the spectral domain and then apply an inverse Fourier transform (FT), requiring the computation of a multidimensional integral.
+        Our contribution is a novel, efficient way to perform this computation, using a sum of precomputed complex-valued hyperplanar wave-functions, oriented in random directions.
+        We show that using suitable wave profiles and combination operators, our model is able to extend to 3D a number of Gaussian and non-Gaussian noises, including Gabor, by-example and Phasor noises, as well as generate 
+        novel cellular noises.
+        Our versatile and controllable solid noise model is very compact, a key feature for complex power spectrum and animated noises.
+        We illustrate this through the design of 2D, 3D, and 3D+t materials using color, transparency and style transfer functions.
+      </p>
+    </section>
+
+    <section class="abstract">
+      <h2>Resources</h2>
+      <p>
+    <div class="resource-links" style="padding-left: 16px; padding-right: 16px; padding-top: 6px;">
+      <!-- <a href="assets/article/paper_1206.pdf" target="_blank"> -->
+      <a href="" target="_blank">
+        <i class="fa-solid fa-file-pdf"></i> Article
+      </a>
+      <!-- <a href="assets/article/paper_1206_supplemental.pdf" target="_blank"> -->
+      <a href="" target="_blank">
+        <i class="fa-regular fa-file-pdf"></i> Supp. doc
+      </a>
+      <!-- <a href="assets/article/paper_1206_video.mp4" target="_blank"> -->
+      <a href="" target="_blank">
+        <i class="fa-regular fa-file-video"></i> Supp. video
+      </a>
+      <a href="GUI/index.html" target="_blank">
+        <i class="fa-regular fa-folder-open"></i> Tutorial (GUI)
+      </a>
+      <a href="" target="_blank">
+        <i class="fa-regular fa-file-code"></i> GitHub repository
+      </a>
+    </div>
+  </section>
+
+    <footer>
+      <p>2025 - Multi-Dimensional Procedural Wave Noise</p>
+    </footer>
+  </div>
+</body>
+</html>

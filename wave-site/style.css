@@ -1,0 +1,137 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #222;
+    text-align: justify;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  header h1 {
+    font-size: 2.2em;
+    margin-bottom: 0.2em;
+  }
+  
+  header .authors {
+    font-size: 1.1em;
+    color: #666;
+  }
+  
+  header .conference {
+    font-size: 1em;
+    font-style: italic;
+    color: #888;
+  }
+  
+  .links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .links a {
+    padding: 10px 15px;
+    background: #1e90ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  
+  .links a:hover {
+    background: #0066cc;
+  }
+  
+  /* .teaser img,
+  .images img { */
+  .teaser img {
+    width: 100%;
+    border-radius: 8px;
+    /* margin: 10px 0; */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  }
+  
+  .abstract {
+    margin: 30px 0;
+  }
+  
+  .abstract h2,
+  .images h2 {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #888;
+  }
+  
+  .author-block {
+    margin-bottom: 20px;
+  }
+  
+  .author-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .author-affiliation,
+  .author-email {
+    font-size: 0.95em;
+    color: #555;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    /* max-width: 600px; */
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .card img {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .card-content h3 {
+    margin-top: 0;
+  }
+  
+  .card-content p {
+    margin-bottom: 0;
+    color: #444;
+  }
+  
