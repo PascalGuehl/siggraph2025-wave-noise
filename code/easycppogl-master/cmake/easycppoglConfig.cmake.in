@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(glfw3 REQUIRED)
+find_dependency(assimp REQUIRED)
+find_dependency(Eigen3 REQUIRED)
+
+if(NOT TARGET easycppogl)
+	include("${CMAKE_CURRENT_LIST_DIR}/easycppoglTargets.cmake")
+endif()
