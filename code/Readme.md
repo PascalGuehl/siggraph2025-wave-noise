@@ -3,7 +3,7 @@
 ## Compilation / Installation
 
 ### Build External Dependencies
-EasyCppOGL is a API build upon the OpenGL library to build real-time 3D graphics applications.
+EasyCppOGL is an API build upon the OpenGL library to build real-time 3D graphics applications.
 1) Go to *easycppogl* directory.
 2) Compile the library follwing its *Readme* file.
 
