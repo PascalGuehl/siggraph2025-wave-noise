@@ -1,5 +1,13 @@
-Compilation / Installation
+# Multi-Dimensional Procedural Wave Noise - Demos
 
-1) Go to *easycppogl* directory, and compile the library. EasyCppOGL is a API build upon the OpenGL library to build real-time 3D graphics applications.
+## Compilation / Installation
 
-2) Go to *WaveNoise* directory, and compile the demo.
+### Build External Dependencies
+EasyCppOGL is a API build upon the OpenGL library to build real-time 3D graphics applications.
+1) Go to *easycppogl* directory.
+2) Compile the library follwing its *Readme* file.
+
+### Demos
+1) Go to *WaveNoise* directory.
+2) Compile the demos.
+3) Launch the demos in the *Build* directory.
