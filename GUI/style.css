@@ -1,0 +1,210 @@
+:root {
+    --image-scale: 30vw; /* ✅ % de la largeur de la fenêtre (viewport width) */
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #2c2c2c;
+    color: #ddd;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 1em;
+    color: #fff;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    color: #fff;
+}
+
+.sidebar ul.submenu {
+    margin-top: 0.3em;
+    padding-left: 1em;
+    list-style: none;
+}
+
+.sidebar ul.submenu li a {
+    /* font-size: 0.9em; */
+    color: #5ac8fa;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #444;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #fff;
+}
+
+header img {
+    width: 200px;
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+dl {
+    margin: 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.param-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 20px;
+    flex-wrap: wrap;
+}
+
+.param-gallery img {
+    max-width: 250px;
+    height: auto;
+    border: 1px solid #444;
+    border-radius: 6px;
+}
+
+.image-slider {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.image-slider img {
+    width: var(--image-scale); /* ✅ Utilise ta variable */
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #444;
+}
+
+.image-slider button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.8em;
+    color: #ccc;
+    cursor: pointer;
+    padding: 0 8px;
+    flex: 0 0 auto; /* ✅ pour éviter que les boutons s'étendent */
+}
+
+.image-slider button:hover {
+    color: #fff;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-value {
+    margin-top: 16px;
+    font-size: 1.1em;
+    color: #ccc;
+    text-align: center;
+}
+
+.dual-images {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dual-images img {
+    width: var(--image-scale); /* Scale normally with your global variable */
+    max-width: 100%; /* Never stretch bigger than original size */
+    height: auto;
+    border: 1px solid #444;
+    border-radius: 6px;
+}
+
+a {
+    color: #5ac8fa; /* ou #00afff, #66ccff, selon ton style */
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.category-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .dot-spatial { background-color: #00aaff; }
+  .dot-spectral { background-color: #ff9f1c; }
+  .dot-profile { background-color: #6a4c93; }
+  .dot-cellular { background-color: #2ec4b6; }
+  .dot-temporal { background-color: #e71d36; }
+  .dot-display { background-color: #ffbf00; }
+  
+  details {
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+}

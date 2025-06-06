@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Procedural Noise Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Documentation</h2>
+            <ul>
+                <li><a href="index.html">GUI</a>
+                    <ul class="submenu">
+                        <li><a href="#spatial">🧭 Spatial</a></li>
+                        <li><a href="#spectral">📈 Spectral</a></li>
+                        <li><a href="#profile">🔬 Profile</a></li>
+                        <li><a href="#cellular">🧩 STIT</a></li>
+                        <li><a href="#display">🎛️ Display</a></li>
+                        <li><a href="#temporal">⏱️ Time</a></li>
+                    </ul>
+                </li>
+            </ul>           
+        </nav>
+        <main class="content">
+            <header>
+                <h1>Wave Noise GUI</h1>
+                <!-- <img src="assets/GUI/gui_main_03.jpg" alt="Wave Noise GUI"> -->
+            </header>
+            
+            <section>
+                <p>Jump to section:</p>
+                <ul>
+                    <li>🧭 <a href="#spatial">Spatial Transformation</a></li>
+                    <li>📈 <a href="#spectral">Spectral Configuration</a></li>
+                    <li>🔬 <a href="#profile">Waveforms & Noise Types</a></li>
+                    <li>🧩 <a href="#cellular">Cellular Noise Settings (STIT)</a></li>
+                    <li>🎛️ <a href="#display">Post-Processing & Display</a></li>
+                    <li>⏱️ <a href="#temporal">Temporal & Animation Controls</a></li>
+                </ul>
+
+                <img src="assets/GUI/gui_main_03.jpg" alt="Wave Noise GUI">
+
+            </section>
+            
+            <hr>
+
+                <section id="spatial">
+                <h2>
+                    <span class="category-dot dot-spatial"></span>🧭 Spatial Transformation
+                </h2>
+                  
+                <p>
+                    These parameters control the spatial placement and scale of the noise in 3D space.
+                    They allow translating the noise field and adjusting its frequency globally.
+                    Useful for positioning, tiling, or zooming into specific structures.
+                </p>
+                <p>
+                Controls the position and spatial scale of the noise in 3D space. These parameters define how the noise field is placed, zoomed, or panned, similar to camera controls for textures.
+                </p>
+                <ul>
+                    <li><strong>X, Y, Z</strong> – Translates the noise field along each axis</li>
+                    <li><strong>Zoom</strong> – Scales the noise frequency globally (higher zoom = denser pattern)</li>                    
+                </ul>
+
+                <details>
+                <dl>
+                    <dt>X</dt>
+                    <dd>Translation offset along the X axis, used to move the noise pattern horizontally in space.</dd>
+                    <!-- Gallery for X -->
+                    <div class="image-slider" id="gallery-x">
+                        <button onclick="changeSlide('x', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-x" src="assets/Param_Images/output_gui/X_01.jpg" alt="GUI demo">
+                                <img id="slider-x" src="assets/Param_Images/output_model/X_01.jpg" alt="X demo">
+                            </div>
+                            <div class="slider-value" id="value-x">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('x', 1)">→</button>
+                    </div>
+
+                    <dt>Y</dt>
+                    <dd>Translation offset along the Y axis, used to move the noise pattern vertically in space.</dd>
+                    <!-- Gallery for Y -->
+                    <div class="image-slider" id="gallery-y">
+                        <button onclick="changeSlide('y', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-y" src="assets/Param_Images/output_gui/Y_01.jpg" alt="Y demo">
+                                <img id="slider-y" src="assets/Param_Images/output_model/Y_01.jpg" alt="Y demo">
+                            </div>
+                            <div class="slider-value" id="value-y">value = 0.0</div>
+                        </div>
+                         <button onclick="changeSlide('y', 1)">→</button>
+                     </div>
+
+                    <dt>Z</dt>
+                    <dd>Translation offset along the Z axis, allowing to explore noise variations in depth or animation.</dd>
+                     <!-- Gallery for Z -->
+                    <div class="image-slider" id="gallery-z">
+                        <button onclick="changeSlide('z', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-z" src="assets/Param_Images/output_gui/Z_01.jpg" alt="Z demo">
+                                <img id="slider-z" src="assets/Param_Images/output_model/Z_01.jpg" alt="Z demo">
+                            </div>
+                            <div class="slider-value" id="value-z">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('z', 1)">→</button>
+                    </div>
+
+                    <dt>Zoom</dt>
+                    <dd>Scales the input position vector before evaluating the noise. Increasing the zoom makes the noise pattern appear smaller and more detailed.</dd>
+                     <!-- Gallery for Zoom -->
+                    <div class="image-slider" id="gallery-zoom">
+                        <button onclick="changeSlide('zoom', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-zoom" src="assets/Param_Images/output_gui/Zoom_01.jpg" alt="Zoom demo">
+                                <img id="slider-zoom" src="assets/Param_Images/output_model/Zoom_01.jpg" alt="Zoom demo">
+                            </div>
+                            <div class="slider-value" id="value-zoom">value = 0.2</div>
+                        </div>
+                        <button onclick="changeSlide('zoom', 1)">→</button>
+                    </div>
+
+                </dl>
+                </details>
+
+            </section>
+
+            <hr>
+
+            <section id="spectral">
+                <h2><span class="category-dot dot-spectral"></span>📈 Spectral Configuration</h2>
+                <p>
+                    These parameters define how the frequency domain is sampled and how directions are distributed.
+                    They influence the resolution, angular diversity, and frequency bandwidth of the generated waves.
+                </p>
+                <p>
+                    Defines how the spectral domain is sampled and how directional and frequency resolution is distributed.
+                    These parameters are now grouped by function: some control visual quality and performance, others define the actual frequency content.
+                </p>         
+                <!-- Subsection 1 -->
+                <h4>Quality vs. Framerate</h4>
+                <ul>
+                    <li><strong>Slice size (RATIO)</strong> – Controls the spectral sampling resolution. Lower values improve precision but increase alignment; higher values reduce quality but speed up rendering.</li>
+                    <li><strong>NDir</strong> – Number of angular directions used in wave synthesis. More directions produce smoother noise at a higher computational cost.</li>
+                </ul>
+                <!-- Subsection 2 -->
+                <h4>Frequency Ranges</h4>
+                <ul>
+                    <li><strong>Aniso wave dir width</strong> – Angular spread used in anisotropic sampling. Controls the angular domain of wave propagation.</li>
+                    <li><strong>FreqMin</strong> – Lower frequency bound. Eliminates large-scale components below this threshold.</li>
+                    <li><strong>FreqMax</strong> – Upper frequency bound. Removes fine details beyond this threshold.</li>
+                </ul>
+
+                <details>
+                <dl>
+                    <dt>Slice size</dt>
+                    <dd>
+                        Controls the spatial frequency of the wave noise by scaling the distance between successive wavefronts.
+                        <br>
+                        Internally, this parameter is converted to a frequency ratio <code>RATIO = 2<sup>iRatio</sup></code>, which is used to scale the wave pattern in the shader.
+                        <ul>
+                            <li><strong>Low slice size</strong> → low frequency (large features)</li>
+                            <li><strong>High slice size</strong> → high frequency (small details)</li>
+                        </ul>
+                        It affects all noise modes by modifying the term <code>1.0 / RATIO</code> in the phase computation of each wave.
+                        <br>
+                        Use this to zoom into or out of the structural level of the noise without changing the global zoom factor.
+                    </dd>
+                     <!-- Gallery for X -->
+                     <div class="image-slider" id="gallery-slice_size">
+                        <button onclick="changeSlide('slice_size', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-slice_size" src="assets/Param_Images/output_gui/slice_size_01.jpg" alt="Slice size demo">
+                                <img id="slider-slice_size" src="assets/Param_Images/output_model/slice_size_01.jpg" alt="Slice size demo">
+                            </div>
+                            <div class="slider-value" id="value-slice_size">value = 2.011</div>
+                        </div>
+                        <button onclick="changeSlide('slice_size', 1)">→</button>
+                    </div>
+                    
+                    <dt>NDir</dt>
+                    <dd>
+                        Number of wave directions used to sample the spectral domain.
+                        <br>
+                        This controls how many hyperplanar waves are superposed to construct the final noise.
+                        <ul>
+                            <li><strong>Low values</strong> (e.g. 8–16) → faster computation, coarser noise with more visible repetition or banding.</li>
+                            <li><strong>High values</strong> (e.g. 64–100) → smoother, more isotropic noise but with higher computation cost.</li>
+                        </ul>
+                        Internally, the directions are stratified or randomized depending on the <code>Operator</code> (e.g., isotropic vs anisotropic).
+                        <br>
+                        This parameter balances quality and performance. It affects both the spatial frequency content and the angular regularity of the noise field.
+                    </dd>
+                    <!-- Gallery for X -->
+                    <div class="image-slider" id="gallery-ndir">
+                        <button onclick="changeSlide('ndir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-ndir" src="assets/Param_Images/output_gui/ndir_01.jpg" alt="NDir demo">
+                                <img id="slider-ndir" src="assets/Param_Images/output_model/ndir_01.jpg" alt="NDir demo">
+                            </div>
+                            <div class="slider-value" id="value-ndir">value = 4</div>
+                        </div>
+                        <button onclick="changeSlide('ndir', 1)">→</button>
+                    </div>
+
+                    <dt>Aniso wave dir width</dt>
+                    <dd>
+                        Controls the angular spread of directions used in anisotropic wave noise modes.
+                        <br>
+                        A smaller value restricts the wave sampling to a narrower set of directions, producing strongly oriented patterns (e.g., flow lines, fibers).
+                        A higher value allows for more angular diversity, resulting in a more diffuse anisotropy.
+                        <br>
+                        This parameter modulates the spread of the angular sector used in the wave sampling stage, especially in <code>Operator</code> modes 1 and 2.
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-aniso_dir_width">
+                        <button onclick="changeSlide('aniso_dir_width', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-aniso_dir_width" src="assets/Param_Images/output_gui/aniso_dir_width_01.jpg" alt="Aniso wave dir width demo">
+                                <img id="slider-aniso_dir_width" src="assets/Param_Images/output_model/aniso_dir_width_01.jpg" alt="Aniso wave dir width demo">
+                            </div>
+                            <div class="slider-value" id="value-aniso_dir_width">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('aniso_dir_width', 1)">→</button>
+                    </div>   
+                               
+                    <dt>FreqMin</dt>
+                    <dd>
+                        Sets the lower bound of the frequency band used to generate the wave noise.
+                        <br>
+                        Frequencies below this threshold are filtered out and do not contribute to the noise. 
+                        <br>
+                        Increasing <code>FreqMin</code> removes large-scale structures, making the noise more fine-grained.
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-freqmin">
+                        <button onclick="changeSlide('freqmin', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-freqmin" src="assets/Param_Images/output_gui/freq_min_01.jpg" alt="FreqMin demo">
+                                <img id="slider-freqmin" src="assets/Param_Images/output_model/freq_min_01.jpg" alt="FreqMin demo">
+                            </div>
+                            <div class="slider-value" id="value-freqmin">value = 0.016</div>
+                        </div>
+                        <button onclick="changeSlide('freqmin', 1)">→</button>
+                    </div>    
+
+                    <dt>FreqMax</dt>
+                    <dd>
+                        Sets the upper bound of the frequency band used in wave generation.
+                        <br>
+                        Frequencies above this value are discarded. Lowering <code>FreqMax</code> smooths out small-scale details.
+                        <br>
+                        Together, <code>FreqMin</code> and <code>FreqMax</code> define a band-pass filter in the spectral domain.
+                    </dd>
+                    <li>
+                        <strong>FreqMax</strong> – Upper frequency bound. Removes fine details beyond this threshold.
+                        <br>
+                    </li>  
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-freqmax">
+                        <button onclick="changeSlide('freqmax', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-freqmax" src="assets/Param_Images/output_gui/freq_max_01.jpg" alt="FreqMax demo">
+                                <img id="slider-freqmax" src="assets/Param_Images/output_model/freq_max_01.jpg" alt="FreqMax demo">
+                            </div>
+                            <div class="slider-value" id="value-freqmax">value = 0.05</div>
+                        </div>
+                        <button onclick="changeSlide('freqmax', 1)">→</button>
+                    </div>              
+                </dl>
+                </details> 
+
+            </section>
+
+            <hr>
+
+            <section id="profile">
+                <h2><span class="category-dot dot-profile"></span>🔬 Waveforms & Noise Types</h2>
+                <p>
+                    These parameters determine the waveform shapes and the synthesis strategy used to create the noise.
+                    They control the spectral shape (Gaussian, non-Gaussian, etc.) and the model used (e.g., isotropic, cellular).
+                </p>
+                <p>
+                Controls the shape and combination of waveforms used to generate noise. This includes spectrum shaping (Gaussian, non-Gaussian) and the synthesis strategy (sum, cellular, etc.).
+                </p>
+                <ul>
+                    <li><strong>Wave type</strong> – Defines the spectral profile (e.g., Gaussian, marble, crystal)</li>
+                    <li><strong>Operator</strong> – Chooses the synthesis model (e.g., isotropic sum, STIT)</li>
+                    <li><strong>Non-gauss wave sharpness</strong> – Sharpness of non-Gaussian wave profiles</li>
+                </ul>
+
+                <details>
+                <dl>
+                    <dt>Wave type</dt>
+                    <dd>
+                        Selects the base amplitude profile used to construct the procedural wave noise. Each mode defines a different spectral distribution or structural appearance:
+                        <ul>
+                            <li><strong>0 – noise-gaussian</strong> : Gaussian frequency falloff — smooth, bell-like spectrum. Ideal for natural, soft noise.</li>
+                            <li><strong>1 – noise-white</strong> : Uniform amplitude spectrum — high entropy, fully uncorrelated noise.</li>
+                            <li><strong>2 – noise-blue</strong> : Increasing amplitude with frequency — enhances fine details and sharp transitions.</li>
+                            <li><strong>3 – noise-brown</strong> : Dominated by low frequencies — produces large-scale cloudy variations.</li>
+                            <li><strong>4 – nongauss-crystal1</strong> : Sharp symmetric peaks — mimics crystalline or polygonal features using a periodic non-Gaussian waveform.</li>
+                            <li><strong>5 – nongauss-web</strong> : Composed of many narrow peaks — creates thread-like structures and sparse interference.</li>
+                            <li><strong>6 – nongauss-marble</strong> : Based on triangular or stair-stepped waveforms — results in periodic veining patterns like marble.</li>
+                            <li><strong>7 – nongauss-crystal2</strong> : Multi-step waveform — alternative symmetry to crystal1, using flat intervals and hard transitions.</li>
+                            <li><strong>8 – nongauss-scratches</strong> : Thresholded Fourier noise — results in scratch-like elongated segments with directional bias.</li>
+                            <li><strong>9 – nongauss-smooth cells</strong> : Soft, cell-based structure using normalized power spectrum and non-linear modulation.</li>
+                            <li><strong>10 – noise-two ampli levels</strong> : Two distinct amplitude levels — inspired by STIT patterns, generating layered contrast bands.</li>
+                        </ul>
+                        The selected wave type affects the frequency response, visual structure, and sensitivity to <code>Contrast</code>, <code>Speed</code>, and <code>Time</code>. It also interacts with the rendering mode controlled by the <code>Operator</code>.
+                    </dd>
+                    <p>
+                    <strong>Isotropic Gaussian noises:</strong>
+                    </p>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_gaussian">
+                        <button onclick="changeSlide('wave_type_gaussian', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_gaussian" src="assets/Param_Images/output_gui/wave_gaussian_01.jpg" alt="Wave type (gaussian) demo">
+                                <img id="slider-wave_type_gaussian" src="assets/Param_Images/output_model/wave_gaussian_01.jpg" alt="Wave type (gaussian) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_gaussian">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_gaussian', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_white">
+                        <button onclick="changeSlide('wave_type_white', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_white" src="assets/Param_Images/output_gui/wave_white_01.jpg" alt="Wave type (white) demo">
+                                <img id="slider-wave_type_white" src="assets/Param_Images/output_model/wave_white_01.jpg" alt="Wave type (white) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_white">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_white', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_blue">
+                        <button onclick="changeSlide('wave_type_blue', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_blue" src="assets/Param_Images/output_gui/wave_blue_01.jpg" alt="Wave type (blue) demo">
+                                <img id="slider-wave_type_blue" src="assets/Param_Images/output_model/wave_blue_01.jpg" alt="Wave type (blue) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_blue">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_blue', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_brown">
+                        <button onclick="changeSlide('wave_type_brown', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_brown" src="assets/Param_Images/output_gui/wave_brown_01.jpg" alt="Wave type (brown) demo">
+                                <img id="slider-wave_type_brown" src="assets/Param_Images/output_model/wave_brown_01.jpg" alt="Wave type (brown) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_brown">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_brown', 1)">→</button>
+                    </div>
+                    <p>
+                    <strong>Anisotropic Gaussian noises (1 direction):</strong>
+                    </p>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_gaussian_aniso_1dir">
+                        <button onclick="changeSlide('wave_type_gaussian_aniso_1dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_gaussian_aniso_1dir" src="assets/Param_Images/output_gui/wave_gaussian_aniso_1dir_01.jpg" alt="Wave type (gaussian) demo">
+                                <img id="slider-wave_type_gaussian_aniso_1dir" src="assets/Param_Images/output_model/wave_gaussian_aniso_1dir_01.jpg" alt="Wave type (gaussian) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_gaussian_aniso_1dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_gaussian_aniso_1dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_white_aniso_1dir">
+                        <button onclick="changeSlide('wave_type_white_aniso_1dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_white_aniso_1dir" src="assets/Param_Images/output_gui/wave_white_aniso_1dir_01.jpg" alt="Wave type (white) demo">
+                                <img id="slider-wave_type_white_aniso_1dir" src="assets/Param_Images/output_model/wave_white_aniso_1dir_01.jpg" alt="Wave type (white) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_white">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_white_aniso_1dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_blue_aniso_1dir">
+                        <button onclick="changeSlide('wave_type_blue_aniso_1dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_blue_aniso_1dir" src="assets/Param_Images/output_gui/wave_blue_aniso_1dir_01.jpg" alt="Wave type (blue) demo">
+                                <img id="slider-wave_type_blue_aniso_1dir" src="assets/Param_Images/output_model/wave_blue_aniso_1dir_01.jpg" alt="Wave type (blue) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_blue_aniso_1dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_blue_aniso_1dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_brown_aniso_1dir">
+                        <button onclick="changeSlide('wave_type_brown_aniso_1dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_brown_aniso_1dir" src="assets/Param_Images/output_gui/wave_brown_aniso_1dir_01.jpg" alt="Wave type (brown) demo">
+                                <img id="slider-wave_type_brown_aniso_1dir" src="assets/Param_Images/output_model/wave_brown_aniso_1dir_01.jpg" alt="Wave type (brown) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_brown_aniso_1dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_brown_aniso_1dir', 1)">→</button>
+                    </div>
+                    <p>
+                    <strong>Anisotropic Gaussian noises (2 directions):</strong>
+                    </p>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_gaussian_aniso_2dir">
+                        <button onclick="changeSlide('wave_type_gaussian_aniso_2dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_gaussian_aniso_2dir" src="assets/Param_Images/output_gui/wave_gaussian_aniso_2dir_01.jpg" alt="Wave type (gaussian) demo">
+                                <img id="slider-wave_type_gaussian_aniso_2dir" src="assets/Param_Images/output_model/wave_gaussian_aniso_2dir_01.jpg" alt="Wave type (gaussian) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_gaussian_aniso_2dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_gaussian_aniso_2dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_white_aniso_2dir">
+                        <button onclick="changeSlide('wave_type_white_aniso_2dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_white_aniso_2dir" src="assets/Param_Images/output_gui/wave_white_aniso_2dir_01.jpg" alt="Wave type (white) demo">
+                                <img id="slider-wave_type_white_aniso_2dir" src="assets/Param_Images/output_model/wave_white_aniso_2dir_01.jpg" alt="Wave type (white) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_white">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_white_aniso_2dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_blue_aniso_2dir">
+                        <button onclick="changeSlide('wave_type_blue_aniso_2dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_blue_aniso_2dir" src="assets/Param_Images/output_gui/wave_blue_aniso_2dir_01.jpg" alt="Wave type (blue) demo">
+                                <img id="slider-wave_type_blue_aniso_2dir" src="assets/Param_Images/output_model/wave_blue_aniso_2dir_01.jpg" alt="Wave type (blue) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_blue_aniso_2dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_blue_aniso_2dir', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-wave_type_brown_aniso_2dir">
+                        <button onclick="changeSlide('wave_type_brown_aniso_2dir', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-wave_type_brown_aniso_2dir" src="assets/Param_Images/output_gui/wave_brown_aniso_2dir_01.jpg" alt="Wave type (brown) demo">
+                                <img id="slider-wave_type_brown_aniso_2dir" src="assets/Param_Images/output_model/wave_brown_aniso_2dir_01.jpg" alt="Wave type (brown) demo">
+                            </div>
+                            <div class="slider-value" id="value-wave_type_brown_aniso_2dir">value = 0.256</div>
+                        </div>
+                        <button onclick="changeSlide('wave_type_brown_aniso_2dir', 1)">→</button>
+                    </div>
+                     <p>
+                    <strong>Non-Gaussian noises:</strong>
+                    </p>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-nongaussian_crystal1">
+                        <button onclick="changeSlide('nongaussian_crystal1', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-nongaussian_crystal1" src="assets/Param_Images/output_gui/wave_nongaussian_crystal_iso.jpg" alt="Wave type (gaussian) demo">
+                                <img id="slider-nongaussian_crystal1" src="assets/Param_Images/output_model/wave_nongaussian_crystal_iso.jpg" alt="Wave type (gaussian) demo">
+                            </div>
+                            <div class="slider-value" id="value-nongaussian_crystal1">value = Wave type: nongauss-crystal1 - Operator: Isotropic Sum</div>
+                        </div>
+                        <button onclick="changeSlide('nongaussian_crystal1', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-nongaussian_web">
+                        <button onclick="changeSlide('nongaussian_web', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-nongaussian_web" src="assets/Param_Images/output_gui/wave_nongaussian_web_iso.jpg" alt="Wave type (white) demo">
+                                <img id="slider-nongaussian_web" src="assets/Param_Images/output_model/wave_nongaussian_web_iso.jpg" alt="Wave type (white) demo">
+                            </div>
+                            <div class="slider-value" id="value-nongaussian_web">value = Wave type: nongauss-web - Operator: Isotropic Sum</div>
+                        </div>
+                        <button onclick="changeSlide('nongaussian_web', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-nongaussian_marble">
+                        <button onclick="changeSlide('nongaussian_marble', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-nongaussian_marble" src="assets/Param_Images/output_gui/wave_nongaussian_marble_iso.jpg" alt="Wave type (blue) demo">
+                                <img id="slider-nongaussian_marble" src="assets/Param_Images/output_model/wave_nongaussian_marble_iso.jpg" alt="Wave type (blue) demo">
+                            </div>
+                            <div class="slider-value" id="value-nongaussian_marble">value = Wave type: nongauss-marble - Operator: Isotropic Sum</div>
+                        </div>
+                        <button onclick="changeSlide('nongaussian_marble', 1)">→</button>
+                    </div>
+                    <!-- Gallery -->
+                    <div class="image-slider" id="gallery-nongaussian_crystal2">
+                        <button onclick="changeSlide('nongaussian_crystal2', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-nongaussian_crystal2" src="assets/Param_Images/output_gui/wave_nongaussian_crystal2_iso.jpg" alt="Wave type (brown) demo">
+                                <img id="slider-nongaussian_crystal2" src="assets/Param_Images/output_model/wave_nongaussian_crystal2_iso.jpg" alt="Wave type (brown) demo">
+                            </div>
+                            <div class="slider-value" id="value-nongaussian_crystal2">value = Wave type: nongauss-crystal2 - Operator: Isotropic Sum</div>
+                        </div>
+                        <button onclick="changeSlide('nongaussian_crystal2', 1)">→</button>
+                    </div>
+            
+                    <dt>Operator</dt>
+                    <dd>
+                        Selects the noise generation strategy, corresponding to different classes of procedural models:
+                        <ul>
+                            <li><strong>0 – Isotropic Sum</strong>: Uses a superposition of isotropic wave functions in random directions. The noise is fully directional-uniform, suited for general-purpose use.</li>
+                            <li><strong>1 – Aniso Sum</strong>: Uses anisotropic wave sampling in one set of preferred directions. Produces directional structures and oriented features.</li>
+                            <li><strong>2 – Two Aniso</strong>: Combines two distinct sets of anisotropic orientations. This increases directional richness while preserving anisotropy.</li>
+                            <li><strong>3 – Simple STIT</strong>: Applies a recursive cell subdivision using distance thresholds on the wave function. Generates structured cellular patterns with a uniform recursive rule.</li>
+                            <li><strong>4 – STIT Nonlinear</strong>: Adds non-linearity through a power function and contrast amplification. Results in more stylized, high-contrast cellular noise.</li>
+                            <li><strong>5 – STIT Step</strong>: Produces binary-like segmented noise using a step function. Good for thresholded structures such as scratches or material discontinuities.</li>
+                            <li><strong>6 – STIT Inverse</strong>: Applies an inverse exponential mapping on the wave result. Enhances boundaries and voids, creating inverted cellular contrast.</li>
+                        </ul>
+                        The operator affects the mathematical formulation of the noise and interacts with other parameters such as <code>Contrast</code>, <code>NRec</code> (recursion depth), and <code>Proba</code> (split probability).
+                    </dd>
+
+                    <dt>Non-gauss wave sharpness</dt>
+                    <dd>
+                        Adjusts the shape of non-Gaussian wave profiles by modifying their sharpness or steepness.
+                        <br>
+                        This parameter influences how rapidly the wave function rises and falls. Low values yield smoother, softer profiles; high values generate sharper peaks or edges.
+                        <br>
+                        It is primarily used in non-Gaussian wave types (e.g., crystal, marble, web), and affects both frequency content and visual appearance.
+                    </dd>
+                </dl>
+            </details>
+
+            </section>
+
+            <hr>
+
+            <section id="cellular">
+                <h2><span class="category-dot dot-cellular"></span>🧩 Cellular Noise Settings (STIT)</h2>
+                <p>
+                    Specific to recursive cellular models (STIT), these settings control how and when cells split.
+                    They influence the level of detail, variability, and complexity in cell-based noise patterns.
+                </p>
+                <p>
+                Used in recursive cell-based operators (STIT). These values define how many splits occur and how likely each split is, controlling structure complexity and detail.
+                </p>
+                <ul>
+                    <li><strong>STIT Probability</strong> – Probability of cell subdivision at each recursive level</li>
+                    <li><strong>STIT Recursions</strong> – Maximum number of recursive subdivisions</li>
+                </ul>
+
+                <details>
+                <dl>
+                    <dt>STIT Probability</dt>
+                    <dd>
+                        Controls the probability of recursively splitting a cell during wave-based STIT (Stochastic Iterative Tessellation) generation.
+                        <br>
+                        At each recursion step, a random value is drawn and compared to this probability:
+                        <br>
+                        If the draw is below <code>STIT Probability</code>, the cell is split again using a new wave; otherwise, recursion stops.
+                        <br>
+                        <ul>
+                            <li><strong>Low values (e.g. 0.2)</strong> → most cells are split once or twice → large, simple cells.</li>
+                            <li><strong>High values (e.g. 0.9)</strong> → many recursive splits → smaller, more complex cellular patterns.</li>
+                        </ul>
+                        This parameter is only used in <code>Operator</code> modes <strong>3 to 6</strong>.
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-stit_proba_random_polytopes">
+                        <button onclick="changeSlide('stit_proba_random_polytopes', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-stit_proba_random_polytopes" src="assets/Param_Images/output_gui/stit_proba_random_polytopes_01.jpg" alt="STIT Probability (Random Polytopes) demo">
+                                <img id="slider-stit_proba_random_polytopes" src="assets/Param_Images/output_model/stit_proba_random_polytopes_01.jpg" alt="STIT Probability (Random Polytopes) demo">
+                            </div>
+                            <div class="slider-value" id="value-stit_proba_random_polytopes">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('stit_proba_random_polytopes', 1)">→</button>
+                    </div>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-stit_proba_cellular">
+                        <button onclick="changeSlide('stit_proba_cellular', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-stit_proba_cellular" src="assets/Param_Images/output_gui/stit_proba_cellular_01.jpg" alt="STIT Probability (Cellular) demo">
+                                <img id="slider-stit_proba_cellular" src="assets/Param_Images/output_model/stit_proba_cellular_01.jpg" alt="STIT Probability (Cellular) demo">
+                            </div>
+                            <div class="slider-value" id="value-stit_proba_cellular">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('stit_proba_cellular', 1)">→</button>
+                    </div>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-stit_proba_hyperplan">
+                        <button onclick="changeSlide('stit_proba_hyperplan', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-stit_proba_hyperplan" src="assets/Param_Images/output_gui/stit_proba_hyperplan_01.jpg" alt="STIT Probability (Hyperplan) demo">
+                                <img id="slider-stit_proba_hyperplan" src="assets/Param_Images/output_model/stit_proba_hyperplan_01.jpg" alt="STIT Probability (Hyperplan) demo">
+                            </div>
+                            <div class="slider-value" id="value-stit_proba_hyperplan">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('stit_proba_hyperplan', 1)">→</button>
+                    </div>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-stit_proba_reversed_cellular">
+                        <button onclick="changeSlide('stit_proba_reversed_cellular', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-stit_proba_reversed_cellular" src="assets/Param_Images/output_gui/stit_proba_reversed_cellular_01.jpg" alt="STIT Probability (Reversed Cellular) demo">
+                                <img id="slider-stit_proba_reversed_cellular" src="assets/Param_Images/output_model/stit_proba_reversed_cellular_01.jpg" alt="STIT Probability (Reversed Cellular) demo">
+                            </div>
+                            <div class="slider-value" id="value-stit_proba_reversed_cellular">value = 0.0</div>
+                        </div>
+                        <button onclick="changeSlide('stit_proba_reversed_cellular', 1)">→</button>
+                    </div>
+                    
+                    <dt>STIT Recursions</dt>
+                    <dd>
+                        Specifies the maximum number of recursive cell splits allowed in STIT-based noise models.
+                        <br>
+                        Each recursive level adds more detail and subdivisions to the cell structure, up to the number defined by <code>STIT Recursions</code>.
+                        <br>
+                        <ul>
+                            <li><strong>1–2 recursions</strong> → coarse patterns with few internal boundaries.</li>
+                            <li><strong>4–6 recursions</strong> → rich, intricate cell structures with fine details.</li>
+                        </ul>
+                        Combined with <code>STIT Probability</code>, it governs both the depth and randomness of cell subdivision in recursive operators.
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-stit_recursion_cellular">
+                        <button onclick="changeSlide('stit_recursion_cellular', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-stit_recursion_cellular" src="assets/Param_Images/output_gui/stit_recursion_cellular_01.jpg" alt="STIT Recursions (Cellular) demo">
+                                <img id="slider-stit_recursion_cellular" src="assets/Param_Images/output_model/stit_recursion_cellular_01.jpg" alt="STIT Recursions (Cellular) demo">
+                            </div>
+                            <div class="slider-value" id="value-stit_recursion_cellular">value = 1</div>
+                        </div>
+                        <button onclick="changeSlide('stit_recursion_cellular', 1)">→</button>
+                    </div>
+                </dl>
+            </details>
+
+            </section>
+
+            <hr>
+
+            <section id="display">
+                <h2><span class="category-dot dot-display"></span>🎛️ Post-Processing & Display</h2>
+                <p>
+                    These parameters are applied after the core noise generation to adjust its visual appearance.
+                    They affect contrast, interpretation of complex noise values, and how scalar values are extracted for rendering.
+                </p>
+                <p>
+                Affects how the complex noise result is converted to scalar values and visualized. These controls tune contrast and select which component of the noise is shown.
+                </p>
+                <ul>
+                    <li><strong>Contrast</strong> – Amplifies or flattens the differences in the noise output</li>
+                    <li><strong>Value (QQ)</strong> – Chooses how the complex noise is interpreted (real, phase, magnitude...)</li>
+                </ul>
+                
+                <details>
+                <dl>
+                    <dt>Contrast</dt>
+                    <dd>
+                        Adjusts the visual contrast of the noise pattern without altering its structure.
+                        <br>
+                        This multiplier scales the amplitude of the wave noise before display. A value of <code>0</code> results in a flat mid-gray image,
+                        while <code>1</code> preserves the full dynamic range of the noise.
+                        <br>
+                        It helps reveal fine structures and can improve visual readability, especially when visualizing small variations or comparing multiple patterns.
+                        <p>
+                            <strong>Note:</strong> the behavior of the <code>Contrast</code> parameter depends on the selected <code>Operator</code>:
+                        </p>
+                        
+                        <ul>
+                            <li>
+                                <strong>Operators 0–2 (wave-based noise):</strong> contrast is applied as a simple linear scaling:
+                                <br>
+                                <code>val = clamp(contrast × waven.x + 0.5, 0.0, 1.0)</code>
+                                <br>
+                                This directly adjusts the amplitude of the wave signal around a central base level.
+                            </li>
+                            <li>
+                                <strong>Operators 4 and 6 (non-Gaussian / cellular wave models):</strong> contrast is applied as a non-linear exponent:
+                                <br>
+                                <code>val = pow(clamp(...), contrast)</code>
+                                <br>
+                                This amplifies or compresses the dynamic range in a non-uniform way, enhancing or flattening local features. 
+                                A contrast &lt; 1 softens details, while contrast &gt; 1 sharpens them.
+                            </li>
+                        </ul>
+                        
+                        <p>
+                            These two contrast strategies provide flexibility for visualizing both smooth and sharp feature structures depending on the noise model in use.
+                        </p>                        
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-noise_contrast">
+                        <button onclick="changeSlide('noise_contrast', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-noise_contrast" src="assets/Param_Images/output_gui/noise_contrast_01.jpg" alt="Noise Value demo">
+                                <img id="slider-noise_contrast" src="assets/Param_Images/output_model/noise_contrast_01.jpg" alt="Noise Value demo">
+                            </div>
+                            <div class="slider-value" id="value-noise_contrast">value = 0.501</div>
+                        </div>
+                        <button onclick="changeSlide('noise_contrast', 1)">→</button>
+                    </div>  
+                                         
+                    <dt>Value</dt>
+                    <dd>
+                        Selects how the scalar output is extracted from the internal complex-valued noise field.
+                        <br>
+                        The noise is computed as a complex number <code>waven = (real, imag)</code>, and this parameter defines which transformation is applied before display:
+                        <ul>
+                            <li><strong>Real (QQ = 0)</strong> — Use the real part of the noise: <code>waven.x</code></li>
+                            <li><strong>Imaginary (QQ = 1)</strong> — Use the imaginary part: <code>waven.y</code></li>
+                            <li><strong>Magnitude (QQ = 2)</strong> — Use the vector length: <code>length(waven)</code></li>
+                            <li><strong>Phase (QQ = 3)</strong> — Use the phase angle normalized to [0,1]: <code>atan(y,x)/π + 0.5</code></li>
+                        </ul>
+                        This allows for very different visual outputs using the same wave configuration.
+                        <br>
+                        Phase-based mappings often produce smoother or periodic results, while magnitude mappings highlight interference structures.
+                    </dd>
+                    <!-- Gallery for FreqMax -->
+                    <div class="image-slider" id="gallery-noise_value">
+                        <button onclick="changeSlide('noise_value', -1)">←</button>
+                        <div class="slider-wrapper">
+                            <div class="dual-images">
+                                <img id="gui-noise_value" src="assets/Param_Images/output_gui/noise_value_01.jpg" alt="Noise Value demo">
+                                <img id="slider-noise_value" src="assets/Param_Images/output_model/noise_value_01.jpg" alt="Noise Value demo">
+                            </div>
+                            <div class="slider-value" id="value-noise_value">value = real</div>
+                        </div>
+                        <button onclick="changeSlide('noise_value', 1)">→</button>
+                    </div>                  
+                </dl>
+                </details>
+
+                <hr>
+
+                <section id="temporal">
+                    <h2><span class="category-dot dot-temporal"></span>⏱️ Temporal & Animation Controls</h2>
+                    <p>
+                        These values affect the temporal behavior of the noise.
+                        They are used to animate the noise over time or simulate motion through the noise field.
+                    </p>
+                    <p>
+                    Used to animate the noise or simulate movement through the field. These values control the time position and the speed at which wavefronts appear to travel.
+                    </p>
+                    <ul>
+                        <li><strong>Time</strong> – Manual animation control (temporal position in the noise)</li>
+                        <li><strong>Speed</strong> – Velocity of wave motion across the field</li>
+                    </ul>
+                    
+                    <details>
+                    <dl>
+                        <dt>Time</dt>
+                        <dd>
+                            Controls the temporal position within the noise field, effectively animating the texture.
+                            <br>
+                            This parameter shifts the wave pattern in time, simulating motion or evolution.
+                            While it can be driven by real time for continuous animation, it is currently exposed as a manual slider to let the user scrub through the animation.
+                        </dd>
+    
+                        <dt>Speed</dt>
+                        <dd>
+                            Controls the velocity at which wave patterns move through space over time.
+                            <br>
+                            Technically, it scales the temporal component <code>tspeed = time × Speed</code> used in the phase shift of each wave slice.
+                            Increasing this value creates faster apparent motion, as if the noise is "flowing" through space.
+                        </dd>
+                    </dl>
+                    </details>
+    
+                </section>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Unified image slider script -->
+    <script>
+        const galleries = {
+            x: ["assets/Param_Images/output_model/X_01.jpg", "assets/Param_Images/output_model/X_02.jpg", "assets/Param_Images/output_model/X_03.jpg"],
+            y: ["assets/Param_Images/output_model/Y_01.jpg", "assets/Param_Images/output_model/Y_02.jpg", "assets/Param_Images/output_model/Y_03.jpg"],
+            z: ["assets/Param_Images/output_model/Z_01.jpg", "assets/Param_Images/output_model/Z_02.jpg", "assets/Param_Images/output_model/Z_03.jpg"],
+            zoom: ["assets/Param_Images/output_model/Zoom_01.jpg", "assets/Param_Images/output_model/Zoom_02.jpg", "assets/Param_Images/output_model/Zoom_03.jpg"],
+            ndir: ["assets/Param_Images/output_model/ndir_01.jpg", "assets/Param_Images/output_model/ndir_02.jpg", "assets/Param_Images/output_model/ndir_03.jpg", "assets/Param_Images/output_model/ndir_04.jpg"],
+            slice_size: ["assets/Param_Images/output_model/slice_size_01.jpg", "assets/Param_Images/output_model/slice_size_02.jpg", "assets/Param_Images/output_model/slice_size_03.jpg", "assets/Param_Images/output_model/slice_size_04.jpg"],
+            freqmin: ["assets/Param_Images/output_model/freq_min_01.jpg", "assets/Param_Images/output_model/freq_min_02.jpg", "assets/Param_Images/output_model/freq_min_03.jpg"],
+            freqmax: ["assets/Param_Images/output_model/freq_max_01.jpg", "assets/Param_Images/output_model/freq_max_02.jpg", "assets/Param_Images/output_model/freq_max_03.jpg"],
+            aniso_dir_width: ["assets/Param_Images/output_model/aniso_dir_width_01.jpg", "assets/Param_Images/output_model/aniso_dir_width_02.jpg", "assets/Param_Images/output_model/aniso_dir_width_03.jpg", "assets/Param_Images/output_model/aniso_dir_width_04.jpg", "assets/Param_Images/output_model/aniso_dir_width_05.jpg"],
+            wave_type_gaussian: ["assets/Param_Images/output_model/wave_gaussian_01.jpg", "assets/Param_Images/output_model/wave_gaussian_02.jpg", "assets/Param_Images/output_model/wave_gaussian_03.jpg", "assets/Param_Images/output_model/wave_gaussian_04.jpg"],
+            wave_type_white: ["assets/Param_Images/output_model/wave_white_01.jpg", "assets/Param_Images/output_model/wave_white_02.jpg", "assets/Param_Images/output_model/wave_white_03.jpg", "assets/Param_Images/output_model/wave_white_04.jpg"],
+            wave_type_blue: ["assets/Param_Images/output_model/wave_blue_01.jpg", "assets/Param_Images/output_model/wave_blue_02.jpg", "assets/Param_Images/output_model/wave_blue_03.jpg", "assets/Param_Images/output_model/wave_blue_04.jpg"],
+            wave_type_brown: ["assets/Param_Images/output_model/wave_brown_01.jpg", "assets/Param_Images/output_model/wave_brown_02.jpg", "assets/Param_Images/output_model/wave_brown_03.jpg", "assets/Param_Images/output_model/wave_brown_04.jpg"],
+            wave_type_gaussian_aniso_1dir: ["assets/Param_Images/output_model/wave_gaussian_aniso_1dir_01.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_1dir_02.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_1dir_03.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_1dir_04.jpg"],
+            wave_type_white_aniso_1dir: ["assets/Param_Images/output_model/wave_white_aniso_1dir_01.jpg", "assets/Param_Images/output_model/wave_white_aniso_1dir_02.jpg", "assets/Param_Images/output_model/wave_white_aniso_1dir_03.jpg", "assets/Param_Images/output_model/wave_white_aniso_1dir_04.jpg"],
+            wave_type_blue_aniso_1dir: ["assets/Param_Images/output_model/wave_blue_aniso_1dir_01.jpg", "assets/Param_Images/output_model/wave_blue_aniso_1dir_02.jpg", "assets/Param_Images/output_model/wave_blue_aniso_1dir_03.jpg", "assets/Param_Images/output_model/wave_blue_aniso_1dir_04.jpg"],
+            wave_type_brown_aniso_1dir: ["assets/Param_Images/output_model/wave_brown_aniso_1dir_01.jpg", "assets/Param_Images/output_model/wave_brown_aniso_1dir_02.jpg", "assets/Param_Images/output_model/wave_brown_aniso_1dir_03.jpg", "assets/Param_Images/output_model/wave_brown_aniso_1dir_04.jpg"],
+            wave_type_gaussian_aniso_2dir: ["assets/Param_Images/output_model/wave_gaussian_aniso_2dir_01.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_2dir_02.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_2dir_03.jpg", "assets/Param_Images/output_model/wave_gaussian_aniso_2dir_04.jpg"],
+            wave_type_white_aniso_2dir: ["assets/Param_Images/output_model/wave_white_aniso_2dir_01.jpg", "assets/Param_Images/output_model/wave_white_aniso_2dir_02.jpg", "assets/Param_Images/output_model/wave_white_aniso_2dir_03.jpg", "assets/Param_Images/output_model/wave_white_aniso_2dir_04.jpg"],
+            wave_type_blue_aniso_2dir: ["assets/Param_Images/output_model/wave_blue_aniso_2dir_01.jpg", "assets/Param_Images/output_model/wave_blue_aniso_2dir_02.jpg", "assets/Param_Images/output_model/wave_blue_aniso_2dir_03.jpg", "assets/Param_Images/output_model/wave_blue_aniso_2dir_04.jpg"],
+            wave_type_brown_aniso_2dir: ["assets/Param_Images/output_model/wave_brown_aniso_2dir_01.jpg", "assets/Param_Images/output_model/wave_brown_aniso_2dir_02.jpg", "assets/Param_Images/output_model/wave_brown_aniso_2dir_03.jpg", "assets/Param_Images/output_model/wave_brown_aniso_2dir_04.jpg"],
+            stit_proba_random_polytopes: ["assets/Param_Images/output_model/stit_proba_random_polytopes_01.jpg", "assets/Param_Images/output_model/stit_proba_random_polytopes_02.jpg", "assets/Param_Images/output_model/stit_proba_random_polytopes_03.jpg", "assets/Param_Images/output_model/stit_proba_random_polytopes_04.jpg"],
+            stit_proba_cellular: ["assets/Param_Images/output_model/stit_proba_cellular_01.jpg", "assets/Param_Images/output_model/stit_proba_cellular_02.jpg", "assets/Param_Images/output_model/stit_proba_cellular_03.jpg", "assets/Param_Images/output_model/stit_proba_cellular_04.jpg"],
+            stit_proba_hyperplan: ["assets/Param_Images/output_model/stit_proba_hyperplan_01.jpg", "assets/Param_Images/output_model/stit_proba_hyperplan_02.jpg", "assets/Param_Images/output_model/stit_proba_hyperplan_03.jpg", "assets/Param_Images/output_model/stit_proba_hyperplan_04.jpg"],
+            stit_proba_reversed_cellular: ["assets/Param_Images/output_model/stit_proba_reversed_cellular_01.jpg", "assets/Param_Images/output_model/stit_proba_reversed_cellular_02.jpg", "assets/Param_Images/output_model/stit_proba_reversed_cellular_03.jpg", "assets/Param_Images/output_model/stit_proba_reversed_cellular_04.jpg"],
+            stit_recursion_cellular: ["assets/Param_Images/output_model/stit_recursion_cellular_01.jpg", "assets/Param_Images/output_model/stit_recursion_cellular_02.jpg", "assets/Param_Images/output_model/stit_recursion_cellular_03.jpg", "assets/Param_Images/output_model/stit_recursion_cellular_04.jpg", "assets/Param_Images/output_model/stit_recursion_cellular_05.jpg"],
+            noise_contrast: ["assets/Param_Images/output_model/noise_contrast_01.jpg", "assets/Param_Images/output_model/noise_contrast_02.jpg", "assets/Param_Images/output_model/noise_contrast_03.jpg"],
+            noise_value: ["assets/Param_Images/output_model/noise_value_01.jpg", "assets/Param_Images/output_model/noise_value_02.jpg", "assets/Param_Images/output_model/noise_value_03.jpg", "assets/Param_Images/output_model/noise_value_04.jpg"],
+            nongaussian_crystal1: ["assets/Param_Images/output_model/wave_nongaussian_crystal_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_crystal_aniso_2dir.jpg"],
+            nongaussian_web: ["assets/Param_Images/output_model/wave_nongaussian_web_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_web_aniso_2dir.jpg"],
+            nongaussian_marble: ["assets/Param_Images/output_model/wave_nongaussian_marble_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_marble_aniso_2dir.jpg"],
+            nongaussian_crystal2: ["assets/Param_Images/output_model/wave_nongaussian_crystal2_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_crystal2_aniso_2dir.jpg"],
+            nongaussian_scratches: ["assets/Param_Images/output_model/wave_nongaussian_scratches_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_scratches_aniso_2dir.jpg"],
+            nongaussian_smooth_cells: ["assets/Param_Images/output_model/wave_nongaussian_smooth_cells_iso.jpg", "assets/Param_Images/output_model/wave_nongaussian_smooth_cells_aniso_2dir.jpg"]
+        };
+
+        const guiGalleries = {
+            x: ["assets/Param_Images/output_gui/X_01.jpg", "assets/Param_Images/output_gui/X_02.jpg", "assets/Param_Images/output_gui/X_03.jpg"],
+            y: ["assets/Param_Images/output_gui/Y_01.jpg", "assets/Param_Images/output_gui/Y_02.jpg", "assets/Param_Images/output_gui/Y_03.jpg"],
+            z: ["assets/Param_Images/output_gui/Z_01.jpg", "assets/Param_Images/output_gui/Z_02.jpg", "assets/Param_Images/output_gui/Z_03.jpg"],
+            zoom: ["assets/Param_Images/output_gui/Zoom_01.jpg", "assets/Param_Images/output_gui/Zoom_02.jpg", "assets/Param_Images/output_gui/Zoom_03.jpg"],
+            ndir: ["assets/Param_Images/output_gui/ndir_01.jpg", "assets/Param_Images/output_gui/ndir_02.jpg", "assets/Param_Images/output_gui/ndir_03.jpg", "assets/Param_Images/output_gui/ndir_04.jpg"],
+            slice_size: ["assets/Param_Images/output_gui/slice_size_01.jpg", "assets/Param_Images/output_gui/slice_size_02.jpg", "assets/Param_Images/output_gui/slice_size_03.jpg", "assets/Param_Images/output_gui/slice_size_04.jpg"],
+            freqmin: ["assets/Param_Images/output_gui/freq_min_01.jpg", "assets/Param_Images/output_gui/freq_min_02.jpg", "assets/Param_Images/output_gui/freq_min_03.jpg"],
+            freqmax: ["assets/Param_Images/output_gui/freq_max_01.jpg", "assets/Param_Images/output_gui/freq_max_02.jpg", "assets/Param_Images/output_gui/freq_max_03.jpg"],
+            aniso_dir_width: ["assets/Param_Images/output_gui/aniso_dir_width_01.jpg", "assets/Param_Images/output_gui/aniso_dir_width_02.jpg", "assets/Param_Images/output_gui/aniso_dir_width_03.jpg", "assets/Param_Images/output_gui/aniso_dir_width_04.jpg", "assets/Param_Images/output_gui/aniso_dir_width_05.jpg"],
+            wave_type_gaussian: ["assets/Param_Images/output_gui/wave_gaussian_01.jpg", "assets/Param_Images/output_gui/wave_gaussian_02.jpg", "assets/Param_Images/output_gui/wave_gaussian_03.jpg", "assets/Param_Images/output_gui/wave_gaussian_04.jpg"],
+            wave_type_white: ["assets/Param_Images/output_gui/wave_white_01.jpg", "assets/Param_Images/output_gui/wave_white_02.jpg", "assets/Param_Images/output_gui/wave_white_03.jpg", "assets/Param_Images/output_gui/wave_white_04.jpg"],
+            wave_type_blue: ["assets/Param_Images/output_gui/wave_blue_01.jpg", "assets/Param_Images/output_gui/wave_blue_02.jpg", "assets/Param_Images/output_gui/wave_blue_03.jpg", "assets/Param_Images/output_gui/wave_blue_04.jpg"],
+            wave_type_brown: ["assets/Param_Images/output_gui/wave_brown_01.jpg", "assets/Param_Images/output_gui/wave_brown_02.jpg", "assets/Param_Images/output_gui/wave_brown_03.jpg", "assets/Param_Images/output_gui/wave_brown_04.jpg"],
+            wave_type_gaussian_aniso_1dir: ["assets/Param_Images/output_gui/wave_gaussian_aniso_1dir_01.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_1dir_02.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_1dir_03.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_1dir_04.jpg"],
+            wave_type_white_aniso_1dir: ["assets/Param_Images/output_gui/wave_white_aniso_1dir_01.jpg", "assets/Param_Images/output_gui/wave_white_aniso_1dir_02.jpg", "assets/Param_Images/output_gui/wave_white_aniso_1dir_03.jpg", "assets/Param_Images/output_gui/wave_white_aniso_1dir_04.jpg"],
+            wave_type_blue_aniso_1dir: ["assets/Param_Images/output_gui/wave_blue_aniso_1dir_01.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_1dir_02.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_1dir_03.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_1dir_04.jpg"],
+            wave_type_brown_aniso_1dir: ["assets/Param_Images/output_gui/wave_brown_aniso_1dir_01.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_1dir_02.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_1dir_03.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_1dir_04.jpg"],
+            wave_type_gaussian_aniso_2dir: ["assets/Param_Images/output_gui/wave_gaussian_aniso_2dir_01.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_2dir_02.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_2dir_03.jpg", "assets/Param_Images/output_gui/wave_gaussian_aniso_2dir_04.jpg"],
+            wave_type_white_aniso_2dir: ["assets/Param_Images/output_gui/wave_white_aniso_2dir_01.jpg", "assets/Param_Images/output_gui/wave_white_aniso_2dir_02.jpg", "assets/Param_Images/output_gui/wave_white_aniso_2dir_03.jpg", "assets/Param_Images/output_gui/wave_white_aniso_2dir_04.jpg"],
+            wave_type_blue_aniso_2dir: ["assets/Param_Images/output_gui/wave_blue_aniso_2dir_01.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_2dir_02.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_2dir_03.jpg", "assets/Param_Images/output_gui/wave_blue_aniso_2dir_04.jpg"],
+            wave_type_brown_aniso_2dir: ["assets/Param_Images/output_gui/wave_brown_aniso_2dir_01.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_2dir_02.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_2dir_03.jpg", "assets/Param_Images/output_gui/wave_brown_aniso_2dir_04.jpg"],
+            stit_proba_random_polytopes: ["assets/Param_Images/output_gui/stit_proba_random_polytopes_01.jpg", "assets/Param_Images/output_gui/stit_proba_random_polytopes_02.jpg", "assets/Param_Images/output_gui/stit_proba_random_polytopes_03.jpg", "assets/Param_Images/output_gui/stit_proba_random_polytopes_04.jpg"],
+            stit_proba_cellular: ["assets/Param_Images/output_gui/stit_proba_cellular_01.jpg", "assets/Param_Images/output_gui/stit_proba_cellular_02.jpg", "assets/Param_Images/output_gui/stit_proba_cellular_03.jpg", "assets/Param_Images/output_gui/stit_proba_cellular_04.jpg"],
+            stit_proba_hyperplan: ["assets/Param_Images/output_gui/stit_proba_hyperplan_01.jpg", "assets/Param_Images/output_gui/stit_proba_hyperplan_02.jpg", "assets/Param_Images/output_gui/stit_proba_hyperplan_03.jpg", "assets/Param_Images/output_gui/stit_proba_hyperplan_04.jpg"],
+            stit_proba_reversed_cellular: ["assets/Param_Images/output_gui/stit_proba_reversed_cellular_01.jpg", "assets/Param_Images/output_gui/stit_proba_reversed_cellular_02.jpg", "assets/Param_Images/output_gui/stit_proba_reversed_cellular_03.jpg", "assets/Param_Images/output_gui/stit_proba_reversed_cellular_04.jpg"],
+            stit_recursion_cellular: ["assets/Param_Images/output_gui/stit_recursion_cellular_01.jpg", "assets/Param_Images/output_gui/stit_recursion_cellular_02.jpg", "assets/Param_Images/output_gui/stit_recursion_cellular_03.jpg", "assets/Param_Images/output_gui/stit_recursion_cellular_04.jpg", "assets/Param_Images/output_gui/stit_recursion_cellular_05.jpg"],
+            noise_contrast: ["assets/Param_Images/output_gui/noise_contrast_01.jpg", "assets/Param_Images/output_gui/noise_contrast_02.jpg", "assets/Param_Images/output_gui/noise_contrast_03.jpg"],
+            noise_value: ["assets/Param_Images/output_gui/noise_value_01.jpg", "assets/Param_Images/output_gui/noise_value_02.jpg", "assets/Param_Images/output_gui/noise_value_03.jpg", "assets/Param_Images/output_gui/noise_value_04.jpg"],
+            nongaussian_crystal1: ["assets/Param_Images/output_gui/wave_nongaussian_crystal_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_crystal_aniso_2dir.jpg"],
+            nongaussian_web: ["assets/Param_Images/output_gui/wave_nongaussian_web_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_web_aniso_2dir.jpg"],
+            nongaussian_marble: ["assets/Param_Images/output_gui/wave_nongaussian_marble_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_marble_aniso_2dir.jpg"],
+            nongaussian_crystal2: ["assets/Param_Images/output_gui/wave_nongaussian_crystal2_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_crystal2_aniso_2dir.jpg"],
+            nongaussian_scratches: ["assets/Param_Images/output_gui/wave_nongaussian_scratches_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_scratches_aniso_2dir.jpg"],
+            nongaussian_smooth_cells: ["assets/Param_Images/output_gui/wave_nongaussian_smooth_cells_iso.jpg", "assets/Param_Images/output_gui/wave_nongaussian_smooth_cells_aniso_2dir.jpg"]
+        };
+
+        const galleryValues = {
+            x: [0.0, 1.011, 2.021],
+            y: [0.0, 1.011, 2.021],
+            z: [0.0, 1.011, 2.021],
+            zoom: [0.2, 0.603, 1.0],
+            ndir: [4, 12, 24, 60],
+            slice_size: [2.011, 4.0, 6.011, 8.0],
+            aniso_dir_width: [0.0, 0.1, 0.3, 0.6, 1.0],
+            freqmin: [0.016, 0.142, 0.382],
+            freqmax: [0.05, 0.508, 1.0],
+            wave_type_gaussian: [0.256, 0.508, 0.760, 1.0],
+            wave_type_white: [0.256, 0.508, 0.760, 1.0],
+            wave_type_blue: [0.256, 0.508, 0.760, 1.0],
+            wave_type_brown: [0.256, 0.508, 0.760, 1.0],
+            wave_type_gaussian_aniso_1dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_white_aniso_1dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_blue_aniso_1dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_brown_aniso_1dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_gaussian_aniso_2dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_white_aniso_2dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_blue_aniso_2dir: [0.256, 0.508, 0.760, 1.0],
+            wave_type_brown_aniso_2dir: [0.256, 0.508, 0.760, 1.0],
+            stit_proba_random_polytopes: [0.0, 0.256, 0.512, 0.756],
+            stit_proba_cellular: [0.0, 0.256, 0.512, 0.756],
+            stit_proba_hyperplan: [0.0, 0.256, 0.512, 0.756],
+            stit_proba_reversed_cellular: [0.0, 0.256, 0.512, 0.756],
+            stit_recursion_cellular: [1, 2, 3, 4, 5],
+            noise_contrast: [0.501, 0.751, 1.0],
+            noise_value: ["real", "imaginary", "modulus", "phasor"],
+            nongaussian_crystal1: ["Wave type: nongauss-crystal1 - Operator: Isotropic Sum", "Wave type: nongauss-crystal1 - Operator: two directions"],
+            nongaussian_web: ["Wave type: nongauss-web - Operator: Isotropic Sum", "Wave type: nongauss-web - Operator: Aniso Sum - two directions"],
+            nongaussian_marble: ["Wave type: nongauss-marble - Operator: Isotropic Sum", "Wave type: nongauss-marble - Operator: Aniso Sum - two directions"],
+            nongaussian_crystal2: ["Wave type: nongauss-crystal2 - Operator: Isotropic Sum", "Wave type: nongauss-crystal2 - Operator: Aniso Sum - two directions"],
+            nongaussian_scratches: ["Wave type: nongauss-scratches - Operator: Isotropic Sum", "Wave type: nongauss-scratches - Operator: Aniso Sum - two directions"],
+            nongaussian_smooth_cells: ["Wave type: nongauss-smooth cells - Operator: Isotropic Sum", "Wave type: nongauss-smooth cells - Aniso Sum - Operator: two directions"]
+        };
+
+        const galleryIndices = {};
+
+        function changeSlide(name, direction) {
+            const images = galleries[name];
+            const guiImages = guiGalleries[name];
+            const values = galleryValues[name];
+
+            if (!images) return;
+
+            galleryIndices[name] = (galleryIndices[name] ?? 0) + direction;
+            if (galleryIndices[name] >= images.length) galleryIndices[name] = 0;
+            if (galleryIndices[name] < 0) galleryIndices[name] = images.length - 1;
+
+            const img = document.getElementById("slider-" + name);
+            img.src = images[galleryIndices[name]];
+
+            const guiImg = document.getElementById("gui-" + name);
+            if (guiImg && guiImages) {
+                guiImg.src = guiImages[galleryIndices[name]];
+            }
+
+            const value = document.getElementById("value-" + name);
+            if (value && values) {
+                value.textContent = "value = " + values[galleryIndices[name]];
+            }
+        }
+    </script>  
+
+</body>
+
+</html>
