@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(EasyCppOGL)
 
+# Installation path
+set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/Install/EasyCppOGL" CACHE PATH "Installation directory" FORCE)
+
 if (WIN32)
 	set (SYS_DATA_PATH $ENV{HOME} CACHE PATH "Path where to read image mesh ...")
 else()
