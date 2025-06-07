@@ -135,3 +135,51 @@ body {
     color: #444;
   }
   
+    .back-button {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .back-button a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1e90ff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+
+  .back-button a:hover {
+    background-color: #0066cc;
+  }
+
+  body.dark-mode .back-button a {
+    background-color: #444;
+    color: #eee;
+  }
+
+  body.dark-mode .back-button a:hover {
+    background-color: #666;
+  }
+
+  .floating-back-button {
+    position: fixed;
+    top: 16px;
+    left: 16px; /* or right: 16px; for top-right */
+    background-color: #111; /* deep black */
+    color: #82b1ff; /* your soft blue */
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .floating-back-button:hover {
+    background-color: #222;
+    color: #a3cfff;
+  }
