@@ -1,6 +1,6 @@
 # Multi-Dimensional Procedural Wave Noise
 
-ACM Transactions on Graphics (TOG), Vol. 44, No. 4, Article XXX, August 2025
+ACM Transactions on Graphics (TOG), Vol. 44, No. 4, Article 37, August 2025
 
 SIGGRAPH 2025, August 2025, Vancouver, Canada
 
